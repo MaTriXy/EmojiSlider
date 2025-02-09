@@ -8,15 +8,16 @@ import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
 import android.text.SpannableString
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.core.content.ContextCompat
 import com.bernaferrari.emojislider.drawables.TextDrawable
 import com.bernaferrari.emojislidersample.R
 import com.bernaferrari.emojislidersample.extensions.dpToPixels
 import com.bernaferrari.emojislidersample.extensions.mapValueFromRangeToRange
+import kotlin.math.min
 
 class EmojiPickerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
@@ -54,13 +55,13 @@ class EmojiPickerView @JvmOverloads constructor(
             insidePaint = createPaintInside()
         }
 
-        val largeRadius = Math.min(width, height) / 2
+        val largeRadius = min(width, height) / 2
 
         canvas.drawCircle(
             width / 2f,
             height / 2f,
             (largeRadius - dpToPixels(CIRCLE_PADDING, context)) * progress,
-            insidePaint
+                insidePaint!!
         )
 
         canvas.save()

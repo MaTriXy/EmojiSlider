@@ -276,9 +276,9 @@ class EmojiSlider @JvmOverloads constructor(
         super.onSizeChanged(w, h, oldw, oldh)
 
         this.trackDrawable.setBounds(
-            left + Math.max(paddingLeft, mThumbOffset),
+            0 + Math.max(paddingLeft, mThumbOffset),
             h / 2 - trackDrawable.intrinsicHeight / 2,
-            right - Math.max(paddingRight, mThumbOffset),
+            w - Math.max(paddingRight, mThumbOffset),
             h / 2 + trackDrawable.intrinsicHeight / 2
         )
     }
@@ -530,7 +530,7 @@ class EmojiSlider @JvmOverloads constructor(
     }
 
     private fun TypedArray.getProgress(): Float =
-        this.getFloat(R.styleable.EmojiSlider_progress, progress).limitToRange()
+        this.getFloat(R.styleable.EmojiSlider_progress_value, progress).limitToRange()
 
     private fun TypedArray.getEmoji(): String =
         this.getString(R.styleable.EmojiSlider_emoji) ?: emoji
@@ -540,8 +540,7 @@ class EmojiSlider @JvmOverloads constructor(
 
     private fun TypedArray.getThumbAllowScrollAnywhere(): Boolean =
         this.getBoolean(
-            R.styleable.EmojiSlider_register_touches_outside_thumb,
-            registerTouchOnTrack
+            R.styleable.EmojiSlider_register_touches_outside_thumb, registerTouchOnTrack
         )
 
     private fun TypedArray.getAllowReselection(): Boolean =
